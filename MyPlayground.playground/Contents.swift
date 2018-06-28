@@ -103,8 +103,8 @@ example(of: "create") {
     
     Observable<String>.create { observe in
         observe.onNext("next element")
-        observe.onError(myError.anError_Code)
-        observe.onCompleted()
+        //observe.onError(myError.anError_Code)
+        //observe.onCompleted()
         
         observe.onNext("Second element")
         
