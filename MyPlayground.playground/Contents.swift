@@ -93,6 +93,9 @@ example(of: "DisposeBag") {
     }.disposed(by: disposeBag)
     
 }
+enum myError: Error {
+    case anError_Code
+}
 
 example(of: "create") {
     
@@ -100,7 +103,7 @@ example(of: "create") {
     
     Observable<String>.create { observe in
         observe.onNext("next element")
-        
+        observe.onError(myError.anError_Code)
         observe.onCompleted()
         
         observe.onNext("Second element")
@@ -116,5 +119,7 @@ example(of: "create") {
          //   print(event)
     //}
 }
+
+
 
 
