@@ -28,6 +28,18 @@ example(of : "PublishSubject") {
         })
     subject.onNext("first Print")
     subject.on(.next("Second print"))
+    
+    let secondSubject = subject.subscribe { event in
+        print("subscribe 2 : " , event.element ?? event)
+    }
+    subject.onNext("Thired Element")
+    subject.onCompleted()
+    let disposeBag = DisposeBag()
+    
+    subject.subscribe {event in
+        print("subscribe 3 : " , event.element ?? event)
+    }.disposed(by: disposeBag)
+    subject.onNext("fourth element")
 }
 
 enum myError: Error {
