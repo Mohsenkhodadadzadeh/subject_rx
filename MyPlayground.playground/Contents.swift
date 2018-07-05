@@ -84,8 +84,26 @@ example(of: "Replay Subject") {
     subject.subscribe {
         print("Thierd Replay : " , $0.element ?? $0)
         }.disposed(by: disposeBag)
+}
+
+example(of: "Variable") {
+    let varibale = Variable("NewInital Value")
     
+    let disposeBag = DisposeBag()
     
+    varibale.value = "Edit Value"
+    
+    varibale.asObservable().subscribe {
+        print("Variable subscribe : " , $0.element ?? $0)
+    }.disposed(by: disposeBag)
+    
+    varibale.value = "edit again Value"
+    varibale.asObservable().subscribe {
+        print("Variable subscribe 2: " , $0.element ?? $0)
+    }.disposed(by: disposeBag)
+    
+    varibale.value = "final value"
     
 }
+
 
