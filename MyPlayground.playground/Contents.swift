@@ -20,7 +20,14 @@ public enum Event<Element> {
 }
 
 example(of : "PublishSubject") {
+    let subject = PublishSubject<String>()
+    subject.on(.next("Anyone listen to me"))
     
+    let firstSubscribe = subject.subscribe (onNext :{ newString in
+        print(newString)
+        })
+    subject.onNext("first Print")
+    subject.on(.next("Second print"))
 }
 
 enum myError: Error {
